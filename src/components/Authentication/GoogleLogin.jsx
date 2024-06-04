@@ -1,14 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { FcGoogle } from "react-icons/fc";
-import auth from "../../firebase/firebase.auth";
-const GoogleLogin = () => {
-  const [signInWithGoogle, user, loading] = useSignInWithGoogle(auth);
 
+import { FcGoogle } from "react-icons/fc";
+import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+const GoogleLogin = () => {
+  const { googleLogin, loading, user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <button
       onClick={() => {
-        signInWithGoogle();
+        googleLogin(location, navigate);
       }}
       type=""
       className="flex w-full items-center justify-center gap-3 rounded-lg bg-[#054C73] px-4 py-3 text-xl leading-[30px] text-white"

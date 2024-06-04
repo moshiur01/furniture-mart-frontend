@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import auth from "../../firebase/firebase.auth";
+import { Link } from "react-router-dom";
+
 import GoogleLogin from "./GoogleLogin";
 
 const Login = () => {
-  const [user, loading] = useAuthState(auth);
-  let from = location.state?.from?.pathname || "/";
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -43,12 +38,12 @@ const Login = () => {
 
     // console.log(formData);
   };
-  //after successful login user sent to his previous route
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [user, loading, navigate, from]);
+  //!after successful login user sent to his previous route
+  //   useEffect(() => {
+  //     if (user) {
+  //       navigate(from, { replace: true });
+  //     }
+  //   }, [user, loading, navigate, from]);
 
   return (
     <section className="px-5 md:mt-24 md:h-screen xl:px-0">

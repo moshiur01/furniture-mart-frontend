@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useState } from "react";
+
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import auth from "../../firebase/firebase.auth";
+import { Link } from "react-router-dom";
+
 import GoogleLogin from "./GoogleLogin";
 
 const SignUp = () => {
-  const [user, loading] = useAuthState(auth);
-  let from = location.state?.from?.pathname || "/";
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
+    displayName: "",
+    phoneNumber: "",
     email: "",
     password: "",
-    photo:
+    photoURL:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2a4xxU0NG6NU0MrfhXkenFNvNMFScB1eDRokLNrMP8seq585qB4EKsddo-1_T6WDTu1g&usqp=CAU",
-
-    role: "user",
   });
 
   const handleInputChange = (e) => {
@@ -47,12 +41,12 @@ const SignUp = () => {
     }
   };
 
-  //after successful login user sent to his previous route
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [user, loading, navigate, from]);
+  //   //after successful login user sent to his previous route
+  //   useEffect(() => {
+  //     if (user) {
+  //       navigate(from, { replace: true });
+  //     }
+  //   }, [user, loading, navigate, from]);
 
   return (
     <section className="px-5 xl:px-0">
@@ -83,7 +77,7 @@ const SignUp = () => {
               <div className="mb-5">
                 <input
                   type="text"
-                  name="name"
+                  name="displayName"
                   placeholder="Enter Your Name"
                   value={formData?.name}
                   onChange={handleInputChange}
@@ -96,7 +90,7 @@ const SignUp = () => {
               <div className="mb-5">
                 <input
                   type="number"
-                  name="phone"
+                  name="phoneNumber"
                   placeholder="Enter Your Phone number"
                   value={formData?.phone}
                   onChange={handleInputChange}
