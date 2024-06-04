@@ -2,7 +2,7 @@ const FeatureCard = () => {
   return (
     <div className="bg-[#F2F5FF] py-12 text-gray-600">
       <div className="mx-auto w-9/12">
-        <div className="flex justify-between">
+        <div className="flex flex-col justify-between gap-10 sm:flex-row">
           {/* item one  */}
           <div className="flex gap-6">
             <svg
