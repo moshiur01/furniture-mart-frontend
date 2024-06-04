@@ -66,7 +66,11 @@ const ProductCard = () => {
 
             <div className="relative z-10 sm:w-5/12">
               <div>
-                <img src="/src/assets/Mask Group-2.png" alt="" />
+                <img
+                  src="/src/assets/beauty-product.jpg"
+                  alt=""
+                  className="rounded-xl sm:h-3/4 sm:w-4/5"
+                />
               </div>
               <div className="absolute top-1/2 -z-10 -translate-y-2/4 sm:right-0">
                 <svg
