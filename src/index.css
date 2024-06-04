@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bannerBg {
+  background-image: url("./assets/Mask Group.jpg");
+  object-fit: cover;
+  background-position: center;
+}
