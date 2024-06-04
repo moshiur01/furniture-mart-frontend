@@ -4,7 +4,7 @@ const RangeCard = () => {
     <div className="bg-white py-16 text-gray-600">
       <div className="mx-auto w-9/12">
         <div className="mb-12 text-center">
-          <p className="text-2xl font-bold">Browse the Range</p>
+          <p className="text-4xl font-bold">Browse the Range</p>
           <p className="text-gray-500">
             Explore our diverse selection of products today
           </p>

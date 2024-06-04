@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const ProductCard = () => {
   return (
     <div className="cyan-400">
@@ -49,15 +50,18 @@ const ProductCard = () => {
         <div className="mx-auto w-9/12">
           <div className="flex flex-col items-center justify-between gap-12 sm:flex-row">
             <div className="space-y-4 sm:w-5/12">
-              <p className="text-2xl font-bold">Beautify Your Space</p>
-              <p className="text-gray-500">
+              <p className="text-4xl font-bold">Beautify Your Space</p>
+              <p className="pb-6 text-gray-500">
                 Enhance your environment with elegant decor, cozy furnishings,
                 and vibrant accents, creating a welcoming and aesthetically
                 pleasing atmosphere.
               </p>
-              <button className="rounded-full bg-[#054C73] px-6 py-3 text-sm font-semibold uppercase text-white">
+              <Link
+                to="products"
+                className="cursor-pointer rounded-full bg-[#054C73] px-6 py-3 text-sm font-semibold uppercase text-white"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
 
             <div className="relative z-10 sm:w-5/12">
