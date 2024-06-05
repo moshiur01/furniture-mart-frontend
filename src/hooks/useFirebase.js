@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
@@ -114,6 +115,46 @@ const useFirebase = () => {
       .finally(() => setLoading(false));
   };
 
+  //update user info
+  const updateUserInfo = (formData) => {
+    const { displayName, email, phoneNumber } = formData;
+
+    // send name to firebase after creation
+    setLoading(true);
+    if (loading) toast.loading("Please wait...");
+    updateProfile(auth.currentUser, {
+      displayName,
+      phoneNumber,
+      email,
+    })
+      .then(() => {
+        toast.success("User data updated successfully");
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((error) => {
+        toast.error(error?.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  //change user password
+  const changePassword = (password) => {
+    updatePassword(auth.currentUser, password)
+      .then((res) => {
+        console.log(res);
+        toast.success("Password changed successfully");
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error?.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // observer user state
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -126,7 +167,18 @@ const useFirebase = () => {
     });
     return () => unsubscribed;
   }, []);
-  return { user, googleLogin, createUser, signIn, logout, loading, authError };
+
+  return {
+    user,
+    googleLogin,
+    createUser,
+    signIn,
+    logout,
+    loading,
+    authError,
+    updateUserInfo,
+    changePassword,
+  };
 };
 
 export default useFirebase;

@@ -4,6 +4,8 @@ import SingUp from "../components/Authentication/SingUp";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
+import UserProfile from "../pages/UserProfile";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SingUp />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
