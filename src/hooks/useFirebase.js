@@ -82,7 +82,19 @@ const useFirebase = () => {
   };
 
   const logout = () => {
-    return signOut(auth).then(() => setUser(null));
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+
+        toast.success("Logout successfully");
+      })
+      .catch((error) => {
+        toast.error(error?.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   //google login

@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import avatar from "../assets/avatar.png";
+import useAuth from "../hooks/useAuth";
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
+  console.log(user?.photoURL);
   return (
     <div className="navbar bg-base-100 px-12 drop-shadow-lg sm:py-4">
       <div className="navbar-start">
@@ -68,20 +72,38 @@ const Navbar = () => {
             className="avatar btn btn-circle btn-ghost"
           >
             <div className="w-8 rounded-full sm:w-10">
-              <img alt="avatar" src={avatar} className="" />
+              <img
+                alt="avatar"
+                src={user?.email ? user?.photoURL : avatar}
+                className=""
+              />
             </div>
           </div>
           <ul
             tabIndex={0}
             className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
+            {user?.email ? (
+              <>
+                <li>
+                  <Link to="/profile" className="justify-between">
+                    Profile
+                  </Link>
+                </li>
 
-            <li>
-              <a>Logout</a>
-            </li>
+                <li>
+                  <a onClick={() => logout()}>Logout</a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" className="justify-between">
+                    login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
