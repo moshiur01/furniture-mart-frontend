@@ -9,3 +9,22 @@
   object-fit: cover;
   background-position: center;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #6c89be;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #054c73;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #055b8a;
+}

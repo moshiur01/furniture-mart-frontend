@@ -11,7 +11,7 @@ const RangeCard = () => {
         </div>
         <div className="flex flex-col justify-center gap-10 sm:flex-row">
           <Link
-            to="/dining"
+            to="/products/Dining"
             className="h-94 w-34 overflow-hidden duration-700 hover:-translate-y-5 hover:border-b-2 hover:border-b-[#054C73]"
           >
             <img src="/src/assets/Image-living room.png" alt="" />
@@ -20,7 +20,7 @@ const RangeCard = () => {
             </p>
           </Link>
           <Link
-            to="/living"
+            to="/products/LivingRoom"
             className="h-94 w-34 overflow-hidden duration-700 hover:-translate-y-5 hover:border-b-2 hover:border-b-[#054C73]"
           >
             <img src="/src/assets/Mask Group.png" alt="" />
@@ -29,7 +29,7 @@ const RangeCard = () => {
             </p>
           </Link>
           <Link
-            to="/bedRoom"
+            to="/products/bedRoom"
             className="h-94 w-34 overflow-hidden duration-700 hover:-translate-y-5 hover:border-b-2 hover:border-b-[#054C73]"
           >
             <img src="/src/assets/Mask Group-1.png" alt="" />
