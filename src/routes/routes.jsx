@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { serverLink } from "../Config/RouteConfig";
 import Login from "../components/Authentication/Login";
 import SingUp from "../components/Authentication/SingUp";
 import CategoryWiseProducts from "../components/Products/CategoryWiseProducs";
@@ -7,6 +8,7 @@ import MainLayout from "../layouts/MainLayout";
 import AddProducts from "../pages/Admin/AddProducts";
 import AdminPageHome from "../pages/Admin/AdminPageHome";
 import AdminProfile from "../pages/Admin/AdminProfile";
+import EditProducts from "../pages/Admin/EditProducts";
 import ManageProducts from "../pages/Admin/ManageProducts";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
@@ -86,6 +88,15 @@ export const router = createBrowserRouter([
             <AddProducts />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "editProduct/:id",
+        element: (
+          <PrivateRoute>
+            <EditProducts />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`${serverLink}/product/${params.id}`),
       },
     ],
   },

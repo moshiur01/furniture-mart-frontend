@@ -1,40 +1,55 @@
+import { useLoaderData } from "react-router-dom";
+
+// const EditProducts = () => {
+//
+
+//   console.log(data);
+//   return <div>EditProducts</div>;
+// };
+
+// export default EditProducts;
+
+/* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { serverLink } from "../../Config/RouteConfig";
 
-const AddProduct = () => {
+const EditProducts = () => {
+  const productData = useLoaderData();
   const [formData, setFormData] = useState({
     name: "",
-    imageURL: "",
     price: "",
+    imageURL: "",
     category: "",
   });
-
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //*add product api handler
+  useEffect(() => {
+    setFormData({
+      name: productData?.name,
+      price: productData?.price,
+      imageURL: productData?.imageURL,
+      category: productData?.category,
+    });
+  }, [productData]);
+
+  //*update data api handler
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      axios.post(`${serverLink}/product`, formData).then((res) => {
-        if (res.data.insertedId) {
-          navigate("/dashboard/manageProducts");
-          toast.success("Product Added");
+    axios
+      .patch(`${serverLink}/product/${productData?._id}`, formData)
+      .then((res) => {
+        if (res?.data?.modifiedCount === 1) {
+          window.location.reload();
+          toast.success("Product Information updated successfully");
         }
       });
-    } catch (error) {
-      //   console.log(error);
-    }
-
-    // console.log(formData);
   };
 
   return (
@@ -45,7 +60,7 @@ const AddProduct = () => {
 
           <div className="my-auto rounded-l-lg py-10 lg:pl-16">
             <h3 className="mb-10 text-center text-3xl font-bold leading-9 text-[#054C73]">
-              Add A new Product
+              Update Product Information
             </h3>
 
             <form onSubmit={submitHandler} className="mx-auto w-8/12">
@@ -110,7 +125,7 @@ const AddProduct = () => {
                   type="submit"
                   className="mb-3 w-full rounded-lg bg-[#054C73] px-4 py-3 text-[18px] leading-[30px] text-white"
                 >
-                  Add Product
+                  Update Product
                 </button>
               </div>
             </form>
@@ -121,4 +136,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProducts;
