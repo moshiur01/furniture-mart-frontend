@@ -6,6 +6,8 @@ import useAuth from "../hooks/useAuth";
 const UserProfile = () => {
   const { user, logout } = useAuth();
 
+  const provider = user?.providerData[0]?.providerId;
+
   //logout handler
   const handleLogout = () => {
     logout();
@@ -23,7 +25,7 @@ const UserProfile = () => {
               {/* show user info  */}
               <figure className="border-primaryColor h-[100px] w-[100px] rounded-full border-2 border-solid">
                 <img
-                  src={user?.photoURL}
+                  src={user?.photoURL ? user?.photoURL : user?.photoUrl}
                   alt=""
                   className="h-full w-full rounded-full"
                 />
@@ -56,35 +58,39 @@ const UserProfile = () => {
             </div>
           </div>
 
-          <div className="md:col-span-2 md:px-[30px]">
-            <div className="flex sm:flex-none">
-              <button
-                onClick={() => setTab("profileSetting")}
-                className={`${
-                  tab === "profileSetting"
-                    ? "bg-blue-700 font-bold text-white"
-                    : ""
-                } text-headingColor border-primaryColor mr-5 rounded-md border border-solid p-2 px-5 text-[16px] font-semibold leading-7`}
-              >
-                Profile Settings
-              </button>
-              <button
-                onClick={() => setTab("changePassword")}
-                className={`${
-                  tab === "changePassword"
-                    ? "bg-blue-700 font-bold text-white"
-                    : ""
-                } text-headingColor border-primaryColor mr-5 rounded-md border border-solid p-2 px-5 text-[16px] font-semibold leading-7`}
-              >
-                Change Password
-              </button>
-            </div>
+          {provider !== "google.com" && (
+            <>
+              <div className="md:col-span-2 md:px-[30px]">
+                <div className="flex sm:flex-none">
+                  <button
+                    onClick={() => setTab("profileSetting")}
+                    className={`${
+                      tab === "profileSetting"
+                        ? "bg-blue-700 font-bold text-white"
+                        : ""
+                    } text-headingColor border-primaryColor mr-5 rounded-md border border-solid p-2 px-5 text-[16px] font-semibold leading-7`}
+                  >
+                    Profile Settings
+                  </button>
+                  <button
+                    onClick={() => setTab("changePassword")}
+                    className={`${
+                      tab === "changePassword"
+                        ? "bg-blue-700 font-bold text-white"
+                        : ""
+                    } text-headingColor border-primaryColor mr-5 rounded-md border border-solid p-2 px-5 text-[16px] font-semibold leading-7`}
+                  >
+                    Change Password
+                  </button>
+                </div>
 
-            {/* conditional render tab content  */}
+                {/* conditional render tab content  */}
 
-            {tab === "profileSetting" && <ProfileSetting user={user} />}
-            {tab === "changePassword" && <ChangePassword user={user} />}
-          </div>
+                {tab === "profileSetting" && <ProfileSetting user={user} />}
+                {tab === "changePassword" && <ChangePassword user={user} />}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

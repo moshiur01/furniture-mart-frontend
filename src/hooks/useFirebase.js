@@ -11,11 +11,15 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { serverLink } from "../Config/RouteConfig";
 import app from "../firebase/firebase.config";
 const auth = getAuth(app);
 
 const useFirebase = () => {
   const [user, setUser] = useState(null);
+
+  //declare admin
+  // const [admin, setAdmin] = useState(null);
   const [authError, setAuthError] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -37,6 +41,8 @@ const useFirebase = () => {
           role: "user",
         };
         setUser(newUSER);
+        // save user to the database
+        saveUser(email, displayName, phoneNumber, photoURL, "POST");
 
         // send name to firebase after creation
         updateProfile(auth.currentUser, {
@@ -103,8 +109,15 @@ const useFirebase = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // eslint-disable-next-line no-unused-vars
+        console.log(result);
         const user = result.user;
+        saveUser(
+          user?.email,
+          user?.displayName,
+          user?.phoneNumber,
+          user?.photoURL,
+          "PUT",
+        );
         const destination = location?.state?.from || "/";
         toast.success("User login successfully");
         navigate(destination);
@@ -167,6 +180,28 @@ const useFirebase = () => {
     });
     return () => unsubscribed;
   }, []);
+
+  // saved user function
+  const saveUser = (email, displayName, phoneNumber, photoURL, method) => {
+    const user = { email, displayName, phoneNumber, photoURL, role: "user" };
+    fetch(`${serverLink}/users`, {
+      method: method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then();
+  };
+
+  // // admin data load
+  // useEffect(() => {
+  //   fetch(`${serverLink}/users/${user?.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setAdmin(data);
+  //     });
+  // }, [user?.email]);
 
   return {
     user,
