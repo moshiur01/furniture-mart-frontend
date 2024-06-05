@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const RangeCard = () => {
   return (
-    <div className="bg-white py-16 text-gray-600">
+    <div className="bg-white py-16 text-gray-600" id="services">
       <div className="mx-auto w-9/12">
         <div className="mb-12 text-center">
           <p className="text-4xl font-bold">Browse the Range</p>

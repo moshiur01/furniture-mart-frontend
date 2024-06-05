@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import avatar from "../assets/avatar.png";
 import useAuth from "../hooks/useAuth";
 const Navbar = () => {
   const { user, logout } = useAuth();
 
-  console.log(user?.photoURL);
   return (
-    <div className="navbar bg-base-100 px-12 drop-shadow-lg sm:py-4">
+    <div className="navbar sticky top-0 z-20 bg-base-100 px-12 drop-shadow-lg sm:py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -55,7 +55,7 @@ const Navbar = () => {
             <a>Home</a>
           </li>
           <li>
-            <a>Services</a>
+            <HashLink to="/#services">Services</HashLink>
           </li>
           <li>
             <a>Products</a>

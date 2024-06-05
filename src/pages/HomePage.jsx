@@ -11,7 +11,7 @@ const HomePage = () => {
       <Banner />
       <FeatureCard />
       <ProductCard />
-      <RangeCard />
+      <RangeCard id="services" />
       <HowItWorks />
       <NewsLetter />
     </div>
