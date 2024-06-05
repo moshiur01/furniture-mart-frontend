@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { client } from "../Config/axiosConfig";
 import avatar from "../assets/avatar.png";
 import useAuth from "../hooks/useAuth";
 const Navbar = () => {
   const { user, logout } = useAuth();
+
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    client.get(`/user/${user?.email}`).then((response) => {
+      setAdmin(response.data);
+    });
+  }, [user?.email]);
 
   return (
     <div className="navbar sticky top-0 z-20 bg-base-100 px-12 drop-shadow-lg sm:py-4">
@@ -86,7 +96,12 @@ const Navbar = () => {
             {user?.email ? (
               <>
                 <li>
-                  <Link to="/profile" className="justify-between">
+                  <Link
+                    to={
+                      admin?.role === admin ? "/dashboard/profile" : "/profile"
+                    }
+                    className="justify-between"
+                  >
                     Profile
                   </Link>
                 </li>
