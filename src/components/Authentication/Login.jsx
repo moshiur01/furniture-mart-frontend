@@ -1,14 +1,19 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "./GoogleLogin";
-
 const Login = () => {
+  const { loading, signIn } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,13 +30,14 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    // // Check if the email contains "@gmail.com"
-    // if (!formData.email.includes("@gmail.com")) {
-    //   toast.error("Invalid Email");
-    //   return;
-    // }
+    // Check if the email contains "@gmail.com"
+    if (!formData.email.includes("@gmail.com")) {
+      toast.error("Invalid Email");
+      return;
+    }
+
     try {
-      console.log(formData);
+      signIn(formData, navigate, location);
     } catch (error) {
       console.log(error);
     }
@@ -111,7 +117,11 @@ const Login = () => {
                   type="submit"
                   className="mb-3 w-full rounded-lg bg-[#054C73] px-4 py-3 text-[18px] leading-[30px] text-white"
                 >
-                  Login{" "}
+                  {loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                  ) : (
+                    <>Login</>
+                  )}
                 </button>
               </div>
             </form>

@@ -1,11 +1,14 @@
 import { useState } from "react";
-
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import GoogleLogin from "./GoogleLogin";
 
 const SignUp = () => {
+  const { loading, createUser, authError } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     displayName: "",
     phoneNumber: "",
@@ -30,12 +33,16 @@ const SignUp = () => {
     e.preventDefault();
 
     // Check if the email contains "@gmail.com"
-    // if (!formData.email.includes("@gmail.com")) {
-    //   toast.error("Invalid Email");
-    //   return;
-    // }
+    if (!formData.email.includes("@gmail.com")) {
+      toast.error("Invalid Email");
+      return;
+    }
+
+    if (authError) {
+      return toast.error(authError?.message);
+    }
     try {
-      console.log(formData);
+      createUser(formData, navigate);
     } catch (error) {
       console.log(error);
     }
@@ -142,7 +149,11 @@ const SignUp = () => {
                   className="mb-4 w-full rounded-lg bg-[#054C73] px-4 py-3 text-[18px] leading-[30px] text-white"
                   // onClick={handleLogin}
                 >
-                  Register{" "}
+                  {loading ? (
+                    <span className="loading loading-spinner loading-lg"></span>
+                  ) : (
+                    <>Register </>
+                  )}
                 </button>
               </div>
             </form>
