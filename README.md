@@ -41,7 +41,7 @@
 
 ## Add a New Product
 
-![https://drive.google.com/uc?export=view&id=1ZZtSIpGEjrZLFF5bDaCSUntPRKC9yQmJ](https://drive.google.com/uc?export=view&id=1ZZtSIpGEjrZLFF5bDaCSUntPRKC9yQmJ)
+![https://drive.google.com/uc?export=view&id=1RYBmDZP7Z06NjU3OTJI2rgce6utg5kuG](https://drive.google.com/uc?export=view&id=1RYBmDZP7Z06NjU3OTJI2rgce6utg5kuG)
 
 ## Update product Information
 
