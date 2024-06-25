@@ -9,6 +9,8 @@ const Navbar = () => {
 
   const [admin, setAdmin] = useState(null);
 
+  console.log(admin);
+
   useEffect(() => {
     client.get(`/user/${user?.email}`).then((response) => {
       setAdmin(response.data);
@@ -70,6 +72,11 @@ const Navbar = () => {
           <li>
             <Link to="/products">Products</Link>
           </li>
+          {user?.email && (
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -98,7 +105,9 @@ const Navbar = () => {
                 <li>
                   <Link
                     to={
-                      admin?.role === admin ? "/dashboard/profile" : "/profile"
+                      admin?.role === "admin"
+                        ? "/dashboard/profile"
+                        : "/profile"
                     }
                     className="justify-between"
                   >

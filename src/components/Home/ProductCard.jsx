@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+
+import livingRoomImg1 from "../../assets/Image-living-room.png";
+import livingRoomImg2 from "../../assets/Mask-Group.png";
+
+import livingRoomImg3 from "../../assets/Mask-Group-1.png";
+import beautyProduct from "../../assets/beauty-product.jpg";
 const ProductCard = () => {
   return (
     <div className="cyan-400">
@@ -20,23 +26,19 @@ const ProductCard = () => {
             <div className="h-94 w-34 overflow-hidden sm:mt-16 sm:rounded-tl-[6.4rem]">
               <img
                 className="scale-100"
-                src="/src/assets/Image-living room.png"
+                src={livingRoomImg1}
                 alt="living room img"
               />
             </div>
 
             <div className="h-94 w-34 overflow-hidden">
-              <img
-                className=" "
-                src="/src/assets/Mask Group.png"
-                alt="living room img"
-              />
+              <img className=" " src={livingRoomImg2} alt="living room img" />
             </div>
 
             <div className="h-94 w-34 overflow-hidden sm:mt-16">
               <img
                 className="sm:rounded-br-[6.4rem]"
-                src="/src/assets/Mask Group-1.png"
+                src={livingRoomImg3}
                 alt="living room img"
               />
             </div>
@@ -67,7 +69,7 @@ const ProductCard = () => {
             <div className="relative z-10 sm:w-5/12">
               <div>
                 <img
-                  src="/src/assets/beauty-product.jpg"
+                  src={beautyProduct}
                   alt=""
                   className="rounded-xl sm:h-3/4 sm:w-4/5"
                 />

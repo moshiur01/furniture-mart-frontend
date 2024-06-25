@@ -1,3 +1,7 @@
+import PurchaseSecurityImg from "../../assets/Purchase-securely.png";
+import ShipsFromWarehouseImg from "../../assets/Ships-from-warehouse.png";
+import StyleYourRoomImg from "../../assets/Style-your-room.png";
+
 const HowItWorks = () => {
   return (
     <div className="bg-[#F2F5FF] py-16 text-gray-600">
@@ -13,10 +17,7 @@ const HowItWorks = () => {
           <div className="flex flex-col justify-center gap-10 sm:flex-row">
             {/* image 1  */}
             <div className="h-94 w-34 overflow-hidden">
-              <img
-                src="/src/assets/Purchase Securely.png"
-                alt="purchase security"
-              />
+              <img src={PurchaseSecurityImg} alt="purchase security" />
               <p className="mt-4 text-center text-2xl font-bold text-gray-700">
                 Purchase Security
               </p>
@@ -27,7 +28,7 @@ const HowItWorks = () => {
             {/* image 2 */}
             <div className="h-94 w-34 overflow-hidden">
               <img
-                src="/src/assets/Ships From Warehouse.png"
+                src={ShipsFromWarehouseImg}
                 alt="Ship From Warehouse"
                 className="sm:mx-auto"
               />
@@ -42,10 +43,7 @@ const HowItWorks = () => {
 
             {/* image 3 */}
             <div className="h-94 w-34 overflow-hidden">
-              <img
-                src="/src/assets/Style Your Room.png"
-                alt="Style Your Room"
-              />
+              <img src={StyleYourRoomImg} alt="Style Your Room" />
               <p className="mt-4 text-center text-2xl font-bold text-gray-700">
                 Style Your Room
               </p>
