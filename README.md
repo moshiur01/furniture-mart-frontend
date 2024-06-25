@@ -23,6 +23,12 @@
 7. Admin can add products
 8. Admin can update his info.
 
+<details>
+  <summary>Home page Image</summary> //dropdown name
+  <br>
+  <img src="https://drive.google.com/uc?export=view&id=143zDRb7bN-BXDVngM5p3_6FltdSGMoYz" alt="Image Description">
+</details>
+
 ## Search and Filter
 
 ![https://drive.google.com/uc?export=view&id=1V03Ly6MJvmKRfcF_CAThVwHAKynGhCGf](https://drive.google.com/uc?export=view&id=1V03Ly6MJvmKRfcF_CAThVwHAKynGhCGf)
