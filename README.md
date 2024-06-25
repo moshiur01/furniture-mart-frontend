@@ -24,7 +24,7 @@
 8. Admin can update his info.
 
 <details>
-  <summary>Home page Image</summary> //dropdown name
+  <summary>Home page Image</summary>
   <br>
   <img src="https://drive.google.com/uc?export=view&id=143zDRb7bN-BXDVngM5p3_6FltdSGMoYz" alt="Image Description">
 </details>
